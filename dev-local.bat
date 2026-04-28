@@ -7,7 +7,7 @@ start "Queue" cmd /k "php artisan queue:listen --tries=1"
 
 echo.
 echo Servidores iniciados:
-echo   App:    http://0.0.0.0:8000  (usa tu IP local)
-echo   Reverb: ws://0.0.0.0:8080
+echo   App:    http://localhost:8000
+echo   Reverb: ws://localhost:8080
 echo.
 echo Para saber tu IP ejecuta: ipconfig

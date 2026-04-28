@@ -8,10 +8,9 @@ use Laravel\Fortify\Features;
 
 Route::redirect('/', '/login')->name('home');
 
-Route::get('carrusel', [CarouselController::class, 'index'])->name('carrusel');
-
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'Dashboard')->name('dashboard');
+    Route::get('carrusel', [CarouselController::class, 'index'])->name('carrusel');
     Route::get('chat', [ChatController::class, 'index'])->name('chat');
     Route::post('chat', [ChatController::class, 'store'])->name('chat.store');
 

@@ -30,16 +30,18 @@ const author = ref(props.author);
 const current = ref(0);
 const progress = ref(0);
 
+const currentTime = ref(new Date());
+let clockTimer: ReturnType<typeof setInterval> | null = null;
 let slideTimer: ReturnType<typeof setInterval> | null = null;
 let progressTimer: ReturnType<typeof setInterval> | null = null;
 
-function clearTimers() {
+function clearCarouselTimers() {
     if (slideTimer) clearInterval(slideTimer);
     if (progressTimer) clearInterval(progressTimer);
 }
 
 function startTimers() {
-    clearTimers();
+    clearCarouselTimers();
 
     if (images.value.length <= 1) return;
 
@@ -87,6 +89,7 @@ watch(
 );
 
 onMounted(() => {
+    clockTimer = setInterval(() => { currentTime.value = new Date(); }, 1000);
     startTimers();
 
     echo().channel('carousel').listen('CarouselUpdated', (e: CarouselPayload) => {
@@ -100,7 +103,8 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-    clearTimers();
+    if (clockTimer) clearInterval(clockTimer);
+    clearCarouselTimers();
     echo().leaveChannel('carousel');
 });
 </script>
@@ -148,8 +152,8 @@ onUnmounted(() => {
              
             <!-- Fecha y Hora -->
             <div class="flex flex-col items-center justify-center text-xl font-semibold text-blue-100 tracking-wider pt-4 border-t border-blue-400/20">
-                <span class="text-sm text-blue-300 mb-2">{{ formatDate(new Date()) }}</span>
-                <span class="text-5xl font-bold text-white drop-shadow-lg">{{ new Date().toLocaleTimeString('es-ES', { hour12: false }) }}</span>
+                <span class="text-sm text-blue-300 mb-2">{{ formatDate(currentTime) }}</span>
+                <span class="text-5xl font-bold text-white drop-shadow-lg">{{ currentTime.toLocaleTimeString('es-ES', { hour12: false }) }}</span>
             </div>
         </div>
 
