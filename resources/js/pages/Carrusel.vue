@@ -107,12 +107,16 @@ onUnmounted(() => {
 
 <template>
     <Head title="Carrusel" />
-    <div class="flex h-screen w-full">
+    <div class="flex h-screen w-full relative overflow-hidden">
+        <!-- Efecto decorativo de fondo (pantalla completa) -->
+        <div class="absolute top-0 right-0 w-full h-full">
+            <div class="absolute top-1/4 right-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-1/3 left-1/4 w-80 h-80 bg-slate-400/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
+            <div class="absolute top-1/2 left-0 w-72 h-72 bg-cyan-400/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s"></div>
+        </div>
+
         <!-- Banner -->
-        <div class="w-2/6 h-screen bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 p-2 text-white flex flex-col justify-between relative overflow-hidden shadow-2xl">
-            <!-- Efecto decorativo de fondo -->
-            <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl -z-10"></div>
-            <div class="absolute bottom-0 left-0 w-80 h-80 bg-slate-500/5 rounded-full blur-3xl -z-10"></div>
+        <div class="w-3/12 h-screen bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 p-2 text-white flex flex-col justify-between relative overflow-hidden shadow-2xl">
 
             <!-- Logo Section -->
             <div class="flex items-center justify-center pt-4">
@@ -121,23 +125,23 @@ onUnmounted(() => {
 
             <!-- Quote Section -->
             <div class="flex-1 min-h-0 flex flex-col justify-center px-2 overflow-hidden">
-                <div class="pb-4 border-b border-blue-400/30">
-                    <h1 class="mb-2 text-4xl text-center font-black tracking-tight leading-tight">
+                <div class="pb-2 border-b border-blue-400/30">
+                    <h1 class="mb-2 text-lg text-center font-black tracking-tight leading-tight">
                         <span class="bg-gradient-to-r from-blue-200 via-blue-100 to-slate-200 bg-clip-text text-transparent">
                             Frase de la semana
                         </span>
                     </h1>
                 </div>
 
-                <p class="text-start my-4 text-xl italic font-light leading-relaxed text-blue-100 overflow-hidden">{{ quote || '—' }}</p>
-                <p class="text-end text-sm font-semibold uppercase tracking-widest text-blue-300 pl-2">{{ author ? `— ${author}` : '' }}</p>
+                <p class="text-start my-2 text-xl italic font-light leading-relaxed text-blue-100 overflow-hidden">{{ quote || '—' }}</p>
+                <p class="text-end text-sm font-semibold tracking-widest text-blue-300 pl-2">{{ author ? `— ${author}` : '' }}</p>
             </div>
 
             <!-- Información adicional -->
-            <div class="mb-4 p-5 rounded-xl bg-white/5 backdrop-blur-sm border border-blue-400/20 hover:bg-white/10 transition duration-300">
+            <div class="mb-4 px-5 py-3 rounded-xl bg-white/5 backdrop-blur-sm border border-blue-400/20 hover:bg-white/10 transition duration-300">
                 <div class="flex flex-col items-center mb-4">
-                    <img src="/Info.png" alt="Info" class="w-6 h-6 drop-shadow-lg">
-                    <h3 class="text-2xl font-bold tracking-wide text-blue-200">Información general</h3>
+                    <img src="/Info.png" alt="Info" class="w-8 h-8 drop-shadow-lg">
+                    <h3 class="text-xl font-bold tracking-wide text-blue-200">Información general</h3>
                 </div>
                 <img src="/QR.png" alt="QR Code" class="w-32 h-32 mx-auto rounded-lg shadow-lg border border-blue-400/30 p-2 bg-white/10">
             </div>
@@ -145,11 +149,11 @@ onUnmounted(() => {
             <!-- Fecha y Hora -->
             <div class="flex flex-col items-center justify-center text-xl font-semibold text-blue-100 tracking-wider pt-4 border-t border-blue-400/20">
                 <span class="text-sm text-blue-300 mb-2">{{ formatDate(new Date()) }}</span>
-                <span class="text-4xl font-bold text-white drop-shadow-lg">{{ new Date().toLocaleTimeString() }}</span>
+                <span class="text-5xl font-bold text-white drop-shadow-lg">{{ new Date().toLocaleTimeString() }}</span>
             </div>
         </div>
 
-        <div class="relative flex h-screen w-4/6 items-center justify-center overflow-hidden bg-black">
+        <div class="relative flex h-screen w-9/12 items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900">
 
                 <!-- Slides -->
                 <template v-if="images.length > 0">
