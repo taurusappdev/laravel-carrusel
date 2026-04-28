@@ -120,17 +120,17 @@ onUnmounted(() => {
             </div>
 
             <!-- Quote Section -->
-            <div class="flex-1 flex flex-col justify-center px-2">
-                <div class="pb-6 border-b border-blue-400/30">
-                    <h1 class="mb-4 text-4xl text-center font-black tracking-tight leading-tight">
+            <div class="flex-1 min-h-0 flex flex-col justify-center px-2 overflow-hidden">
+                <div class="pb-4 border-b border-blue-400/30">
+                    <h1 class="mb-2 text-4xl text-center font-black tracking-tight leading-tight">
                         <span class="bg-gradient-to-r from-blue-200 via-blue-100 to-slate-200 bg-clip-text text-transparent">
                             Frase de la semana
                         </span>
                     </h1>
                 </div>
-                
-                <p class="text-start mb-6 text-xl italic font-light leading-relaxed text-blue-100 min-h-20">{{ quote || '—' }}</p>
-                <p class="text-end text-sm font-semibold uppercase tracking-widest text-blue-300 mb-2 pl-2">{{ author ? `— ${author}` : '' }}</p>
+
+                <p class="text-start my-4 text-xl italic font-light leading-relaxed text-blue-100 overflow-hidden">{{ quote || '—' }}</p>
+                <p class="text-end text-sm font-semibold uppercase tracking-widest text-blue-300 pl-2">{{ author ? `— ${author}` : '' }}</p>
             </div>
 
             <!-- Información adicional -->
@@ -160,7 +160,7 @@ onUnmounted(() => {
                             :key="img.id"
                             :src="img.url"
                             :alt="img.title ?? ''"
-                            class="absolute inset-0 h-full w-full object-cover"
+                            class="absolute inset-0 h-full w-full object-contain"
                         />
                     </transition-group>
 
