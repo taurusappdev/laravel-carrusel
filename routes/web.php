@@ -8,6 +8,10 @@ use Laravel\Fortify\Features;
 
 Route::redirect('/', '/login')->name('home');
 
+Route::get('organigrama', function () {
+    return response()->file(public_path('organigrama.html'));
+})->name('organigrama');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'Dashboard')->name('dashboard');
     Route::get('carrusel', [CarouselController::class, 'index'])->name('carrusel');
